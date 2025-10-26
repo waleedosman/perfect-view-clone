@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Gift, Phone, BookUser, CreditCard, ShoppingCart, ChevronDown, Sun, Moon } from "lucide-react";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SettingsHeader = () => {
   const [isDark, setIsDark] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <header className="bg-card border-b border-border sticky top-0 z-50">
@@ -32,7 +35,12 @@ const SettingsHeader = () => {
               <BookUser className="w-4 h-4 mr-2" />
               Contacts
             </Button>
-            <Button variant="ghost" size="sm" className="text-foreground">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className={`text-foreground ${location.pathname === '/billing' ? 'text-primary' : ''}`}
+              onClick={() => navigate('/billing')}
+            >
               <CreditCard className="w-4 h-4 mr-2" />
               Buy Credits
             </Button>
